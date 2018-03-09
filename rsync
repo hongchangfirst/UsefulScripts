@@ -1,0 +1,1 @@
+rsync -e "ssh" -rca --delete-after /Users/zhc/workplace/AS/src/ hc.desktop.zhc.com:/home/zhc/workplace/AS/src/
