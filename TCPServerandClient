@@ -1,0 +1,7 @@
+# client, send data to server
+nc 192.168.0.11 8000 < data
+
+# server, listens on port 8000 for multiple times
+nc -lk 8000 
+
+
