@@ -1,0 +1,9 @@
+#1
+java -cp ClassesFinder-1.0-SNAPSHOT.jar -Djava.ext.dirs=/apollo/env/ChimeraWebsite/lib com.zhc.tools.ClassesFinder
+
+#2
+/apollo/env/ChimeraWebsite/jdk/bin/java -cp ClassesFinder-1.0-SNAPSHOT.jar -Djava.ext.dirs=/apollo/env/ChimeraWebsite/lib com.zhc.tools.ClassesFinder
+
+#3
+/apollo/env/ChimeraWebsite/jdk/bin/java -cp ClassesFinder-1.0-SNAPSHOT.jar -Djava.library.path=/apollo/env/ChimeraWebsite/lib com.zhc.tools.ClassesFinder
+
