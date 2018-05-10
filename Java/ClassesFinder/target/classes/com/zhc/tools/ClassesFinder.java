@@ -15,10 +15,18 @@ public class ClassesFinder {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        Reflections reflections = new Reflections(".*");
+        if (args.length < 1) {
+            System.err.println("Error: please add the class or interface name.");
+            System.exit(1);
+        }
+
+        System.out.println("Finding " + args[0]);
         Class clazz = Class.forName(args[0]);
 
+        Reflections reflections = new Reflections(".*");
         Set<Class> subClasses = reflections.getSubTypesOf(clazz);
+
+        System.out.printf("Find %d classes.\n", subClasses.size());
         for (Class c : subClasses) {
             System.out.println(c.getCanonicalName());
         }
