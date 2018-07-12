@@ -41,6 +41,10 @@ else
 
     % Plot z = 0
     % Notice you need to specify the range [0, 0]
+    % why use [0,0] represents the one contour that makes z equlas 0? the reason is that if 
+    % you use 0, that tells octave that you only need zero coutours. Such as if you use 10, then
+    % contour will draw 10 contours automatically in the figure.
+    %contour(u, v, z, 10, 'LineWidth', 2)
     contour(u, v, z, [0, 0], 'LineWidth', 2)
 end
 hold off
