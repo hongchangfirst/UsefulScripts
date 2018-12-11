@@ -29,7 +29,7 @@ Classes Finder
 
 
 ## TamperMonkey
-AAA Dependende Services Finder
+AAA Dependendcy Services Finder
 
 All Clients Finder
 
