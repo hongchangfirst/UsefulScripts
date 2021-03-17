@@ -1,0 +1,60 @@
+@startuml
+
+skinparam backgroundColor White
+skinparam class {
+backgroundColor White
+borderColor Black
+}
+skinparam note {
+backgroundColor White
+
+}
+
+skinparam participant {
+backgroundColor LightGray
+borderColor Black
+
+}
+
+skinparam linetype ortho
+skinparam SequenceMessageAlign center
+
+title: OIH VRM FBAdvantage Sequence
+
+participant VRM as VRM
+participant Sellers as Sellers
+participant "VRM Pool" as VP
+participant Customers as Customers
+participant FBAdvanage as FB
+participant "ICP/SCIS" as SCIS
+participant MEI as MEI
+participant "Retail Website" as RW
+participant "COW/Shipment" as COW
+participant "FBAdvanage Portal" as FP
+
+group VRM Points Promotion Discovery
+
+VRM->VP: Poinnts Pool Generation
+note over VP: Spending Controling
+VP->FB: VRM Points
+FB->SCIS: Points Pool Data
+SCIS -> MEI: Points Promotion Message
+MEI -> Sellers: Points Promotion Widget Displaying
+end VRM Points Promotion Discovery
+
+
+alt Seller Adopted
+Sellers -> MEI: Recommendations Adopted
+note over MEI: price changed
+Customers->RW: Orders creation
+RW->COW: Orders and shipment workflow
+COW->FB: Orders and shipment status
+FB->FP: Points allocation
+FP->Sellers: Points earned
+Note over Sellers: Sellers Benefits earned
+Sellers->FP: Fee discounts or cash redemption
+
+else 
+end
+
+@enduml
