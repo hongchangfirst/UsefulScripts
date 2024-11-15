@@ -1,0 +1,59 @@
+// Function to extract table data and convert to Excel
+function exportTableToExcel() {
+    // Create an array to hold the table headers and rows
+    const tableData = [];
+
+    // Select all table rows within the <tbody> of the table
+    const rows = document.querySelectorAll("tbody.yui3-datatable-data tr");
+
+    // Extract the header names
+    const headers = [
+        "DataSet",
+        "Marketplace",
+        "HostGroup",
+        "Host",
+        "ServiceName",
+        "MethodName",
+        "Client",
+        "MetricClass",
+        "Instance",
+        "Metric"
+    ];
+
+    // Add headers to the table data array
+    tableData.push(headers);
+
+    // Iterate over each table row
+    rows.forEach((row) => {
+        // Extract data from each relevant cell (skipping action cells)
+        const dataSet = row.querySelector(".yui3-datatable-col-DataSet a")?.textContent.trim() || "";
+        const marketplace = row.querySelector(".yui3-datatable-col-Marketplace a")?.textContent.trim() || "";
+        const hostGroup = row.querySelector(".yui3-datatable-col-HostGroup a")?.textContent.trim() || "";
+        const host = row.querySelector(".yui3-datatable-col-Host a")?.textContent.trim() || "";
+        const serviceName = row.querySelector(".yui3-datatable-col-ServiceName a")?.textContent.trim() || "";
+        const methodName = row.querySelector(".yui3-datatable-col-MethodName a")?.textContent.trim() || "";
+        const client = row.querySelector(".yui3-datatable-col-Client a")?.textContent.trim() || "";
+        const metricClass = row.querySelector(".yui3-datatable-col-MetricClass a")?.textContent.trim() || "";
+        const instance = row.querySelector(".yui3-datatable-col-Instance a")?.textContent.trim() || "";
+        const metric = row.querySelector(".yui3-datatable-col-Metric a")?.textContent.trim() || "";
+
+        // Push the extracted row data into tableData array
+        tableData.push([dataSet, marketplace, hostGroup, host, serviceName, methodName, client, metricClass, instance, metric]);
+    });
+
+    // Create a new workbook and worksheet using the xlsx library
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.aoa_to_sheet(tableData);
+
+    // Append the worksheet to the workbook
+    XLSX.utils.book_append_sheet(wb, ws, "TableData");
+
+    // Save the workbook as an Excel file
+    XLSX.writeFile(wb, "table_data.xlsx");
+}
+
+// Load xlsx library from CDN
+const script = document.createElement("script");
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";
+script.onload = () => exportTableToExcel();
+document.body.appendChild(script);
